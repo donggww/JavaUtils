@@ -12,7 +12,7 @@ public class Excel2Sql {
     private static final Logger log = LoggerFactory.getLogger(Excel2Sql.class);
 
     public static void main(String[] args) {
-        try (FileInputStream fileInputStream = new FileInputStream("D:\\OARcvFiles\\新支付平台（第三批次）二代支付上线生产参数检查表V1.1.xlsx")) {
+        try (FileInputStream fileInputStream = new FileInputStream("D:\\MyExcel\\1111111.xlsx")) {
             readExcelData(fileInputStream);
         } catch (IOException e) {
             throw new RuntimeException(e);

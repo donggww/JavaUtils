@@ -1,0 +1,32 @@
+server:
+    port: 8080
+
+spring:
+    application:
+        name: springCloud
+
+    mail:
+      host: smtp.qq.com
+      port: 587
+      username: your_email@qq.com
+      password: your_password
+      properties:
+        mail:
+          smtp:
+            auth: true
+            starttls:
+              enable: true
+
+eureka:
+    client:
+        serviceUrl:
+            defaultZone: http://127.0.0.1:9527/eureka/
+
+management:
+   endpoint:
+     health:
+       show-details: always
+
+logging:
+   level:
+     com.netflix.discovery: 'DEBUG'

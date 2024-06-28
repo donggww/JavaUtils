@@ -1,15 +1,11 @@
 package com.donggw.core.utils;
 
-import com.sun.org.slf4j.internal.Logger;
-import com.sun.org.slf4j.internal.LoggerFactory;
 import org.apache.poi.ss.usermodel.*;
 
 import java.io.FileInputStream;
 import java.io.IOException;
 
 public class Excel2Sql {
-
-    private static final Logger log = LoggerFactory.getLogger(Excel2Sql.class);
 
     public static void main(String[] args) {
         try (FileInputStream fileInputStream = new FileInputStream("D:\\MyExcel\\1111111.xlsx")) {
@@ -69,7 +65,7 @@ public class Excel2Sql {
                 }
             }
         } catch (Exception e) {
-            log.error("文件读取异常",e);
+            System.out.println(e.getMessage());
         }
     }
 

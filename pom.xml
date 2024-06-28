@@ -36,6 +36,18 @@
                 <type>pom</type>
                 <scope>import</scope>
             </dependency>
+
+            <!-- Logback Dependencies -->
+            <dependency>
+                <groupId>ch.qos.logback</groupId>
+                <artifactId>logback-classic</artifactId>
+                <version>1.2.10</version>
+            </dependency>
+            <dependency>
+                <groupId>ch.qos.logback</groupId>
+                <artifactId>logback-core</artifactId>
+                <version>1.2.10</version>
+            </dependency>
         </dependencies>
     </dependencyManagement>
 

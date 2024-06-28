@@ -1,11 +1,13 @@
 server:
-    port: 9527
+  port: 9527
 
 eureka:
-    instance:
-        hostname: 127.0.0.1
-    client:
-        register-with-eureka: false
-        fetch-registry: false
-    server:
-        wait-time-in-ms-when-sync-empty: 0
+  instance:
+    hostname: 127.0.0.1
+  client:
+    register-with-eureka: true
+    fetch-registry: true
+    serviceUrl:
+      defaultZone: http://127.0.0.1:9527/eureka/
+  server:
+    wait-time-in-ms-when-sync-empty: 0

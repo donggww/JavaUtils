@@ -10,14 +10,14 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
 
 @RestController
-public class EmailController {
+public class SendEmailController {
 
-	private static final Logger logger = LoggerFactory.getLogger(EmailController.class);
+	private static final Logger logger = LoggerFactory.getLogger(SendEmailController.class);
 
 	private final EmailService emailService;
 
 	@Autowired
-	public EmailController(EmailService emailService) {
+	public SendEmailController(EmailService emailService) {
 		this.emailService = emailService;
 	}
 

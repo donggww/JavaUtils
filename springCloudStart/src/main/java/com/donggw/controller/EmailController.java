@@ -1,11 +1,12 @@
 package com.donggw.controller;
 
+import com.donggw.dto.EmailRequest;
 import com.donggw.service.EmailService;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
 
 @RestController
@@ -21,15 +22,13 @@ public class EmailController {
 	}
 
 	@PostMapping("/sendEmail")
-	public String sendEmail(@RequestParam String to,
-	                        @RequestParam String subject,
-	                        @RequestParam String text) {
+	public String sendEmail(@RequestBody EmailRequest emailRequest) {
 		try {
-			emailService.sendEmail(to, subject, text);
+			emailService.sendEmail(emailRequest.getTo(), emailRequest.getSubject(), emailRequest.getText());
 			logger.info("邮件发送成功！");
 		} catch (Exception e) {
 			logger.error("邮件发送失败", e);
-			return "send fail";
+			return "send Email Fail";
 		}
 		return "send success";
 	}

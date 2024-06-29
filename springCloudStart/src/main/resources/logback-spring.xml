@@ -1,7 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <configuration>
 
-    <property name="LOG_FILE" value="springCloud.log"/>
+    <property name="LOG_FILE" value="logs/springCloud.log"/>
+    <property name="HEARTBEAT_FILE" value="logs/heartbeat.log"/>
+
     <property name="LOG_LEVEL" value="DEBUG"/>
 
     <!-- Console Appender -->
@@ -10,7 +12,12 @@
             <pattern>[%d{yyyy-MM-dd HH:mm:ss.SSS}] [%thread] [%level] [%logger{36}] - %msg%n</pattern>
         </encoder>
     </appender>
-
+    <!-- Console Appender -->
+    <appender name="HEARTBEAT" class="ch.qos.logback.core.ConsoleAppender">
+        <encoder>
+            <pattern>[%d{yyyy-MM-dd HH:mm:ss.SSS}] [%thread] [%level] [%logger{36}] - %msg%n</pattern>
+        </encoder>
+    </appender>
     <!-- File Appender -->
     <appender name="FILE" class="ch.qos.logback.core.rolling.RollingFileAppender">
         <file>${LOG_FILE}</file>
@@ -19,7 +26,19 @@
             <maxHistory>30</maxHistory>
         </rollingPolicy>
         <encoder>
-            <pattern>[%thread] %d{yyyy-MM-dd HH:mm:ss.SSS} %-5level %logger{36} - %msg%n</pattern>
+            <pattern>[%d{yyyy-MM-dd HH:mm:ss.SSS}] [%thread] [%level] [%logger{36}] - %msg%n</pattern>
+        </encoder>
+    </appender>
+
+    <!-- 独立文件输出 -->
+    <appender name="HEARTBEAT" class="ch.qos.logback.core.rolling.RollingFileAppender">
+        <file>${HEARTBEAT_FILE}</file>
+        <rollingPolicy class="ch.qos.logback.core.rolling.TimeBasedRollingPolicy">
+            <fileNamePattern>logs/heartbeat.%d{yyyy-MM-dd}.log</fileNamePattern>
+            <maxHistory>30</maxHistory>
+        </rollingPolicy>
+        <encoder>
+            <pattern>%d{yyyy-MM-dd HH:mm:ss.SSS} [%thread] %-5level %logger{36} - %msg%n</pattern>
         </encoder>
     </appender>
 
@@ -30,5 +49,8 @@
     <logger name="com.donggw" level="${LOG_LEVEL}" additivity="false">
         <appender-ref ref="CONSOLE"/>
     </logger>
-
+    <!-- 为DiscoveryClient单独设置logger -->
+    <logger name="com.netflix.discovery" level="DEBUG" additivity="false">
+        <appender-ref ref="HEARTBEAT"/>
+    </logger>
 </configuration>

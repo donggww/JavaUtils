@@ -29,4 +29,13 @@ public class EmailReceiverService {
 	public void deleteById(Integer id) {
 		emailReceiverRepository.deleteById(id);
 	}
+
+	public Optional<EmailReceiver> findEmailByAny(EmailReceiver emailReceiver) {
+		return emailReceiverRepository.findEmailByAny(
+				emailReceiver.getId(),
+				emailReceiver.getName(),
+				emailReceiver.getTel(),
+				emailReceiver.getEmail(),
+				emailReceiver.getStatus());
+	}
 }

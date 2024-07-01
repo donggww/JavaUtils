@@ -21,15 +21,15 @@ public class EmailReceiverService {
 	}
 
 	public Optional<EmailReceiver> findById(Long id) {
-		return emailReceiverRepository.findById(Math.toIntExact(id));
+		return emailReceiverRepository.findById(id);
 	}
 
 	public List<EmailReceiver> findAll() {
-		return emailReceiverMapper.findAll();
+		return emailReceiverRepository.findAll();
 	}
 
 	public void deleteById(Long id) {
-		emailReceiverRepository.deleteById(Math.toIntExact(id));
+		emailReceiverRepository.deleteById(id);
 	}
 
 	public List<EmailReceiver> selectEmail(EmailReceiver emailReceiver) {

@@ -13,29 +13,26 @@ public class EmailReceiverService {
 
 	@Autowired
 	EmailReceiverRepository emailReceiverRepository;
+	@Autowired
+	com.donggw.mapper.EmailReceiver emailReceiverMapper;
 
 	public EmailReceiver save(EmailReceiver emailReviver) {
 		return emailReceiverRepository.save(emailReviver);
 	}
 
-	public Optional<EmailReceiver> findById(Integer id) {
-		return emailReceiverRepository.findById(id);
+	public Optional<EmailReceiver> findById(Long id) {
+		return emailReceiverRepository.findById(Math.toIntExact(id));
 	}
 
 	public List<EmailReceiver> findAll() {
-		return emailReceiverRepository.findAll();
+		return emailReceiverMapper.findAll();
 	}
 
-	public void deleteById(Integer id) {
-		emailReceiverRepository.deleteById(id);
+	public void deleteById(Long id) {
+		emailReceiverRepository.deleteById(Math.toIntExact(id));
 	}
 
-	public Optional<EmailReceiver> findEmailByAny(EmailReceiver emailReceiver) {
-		return emailReceiverRepository.findEmailByAny(
-				emailReceiver.getId(),
-				emailReceiver.getName(),
-				emailReceiver.getTel(),
-				emailReceiver.getEmail(),
-				emailReceiver.getStatus());
+	public List<EmailReceiver> selectEmail(EmailReceiver emailReceiver) {
+		return emailReceiverMapper.selectEmail(emailReceiver);
 	}
 }

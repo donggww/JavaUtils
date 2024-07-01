@@ -59,6 +59,14 @@
                 <artifactId>mysql-connector-java</artifactId>
                 <version>8.0.29</version>
             </dependency>
+
+            <!-- MyBatis dependencies -->
+            <dependency>
+                <groupId>org.mybatis.spring.boot</groupId>
+                <artifactId>mybatis-spring-boot-starter</artifactId>
+                <version>2.2.2</version>
+            </dependency>
+
         </dependencies>
     </dependencyManagement>
 

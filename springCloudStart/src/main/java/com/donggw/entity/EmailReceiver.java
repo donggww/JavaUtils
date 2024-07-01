@@ -5,7 +5,7 @@ import lombok.Getter;
 import lombok.Setter;
 
 import javax.persistence.*;
-import java.time.LocalDateTime;
+import java.util.Date;
 
 @Getter
 @Setter
@@ -16,7 +16,7 @@ public class EmailReceiver {
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	@Column(name = "AUTINC_ID")
-	private Integer id;
+	private Long autincId;
 
 	@Column(name = "NAME", length = 256)
 	private String name;
@@ -32,10 +32,10 @@ public class EmailReceiver {
 
 	@Column(name = "CREATE_TIME", nullable = false, updatable = false)
 	@org.hibernate.annotations.CreationTimestamp
-	private LocalDateTime createTime;
+	private Date createTime;
 
 	@Column(name = "UPDATE_TIME")
 	@org.hibernate.annotations.UpdateTimestamp
-	private LocalDateTime updateTime;
+	private Date updateTime;
 
 }

@@ -3,7 +3,6 @@ package com.donggw.controller;
 import com.donggw.entity.EmailReceiver;
 import com.donggw.service.EmailReceiverService;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -33,19 +32,17 @@ public class EmailReceiverController {
 
 	@PostMapping("/deleteEmailById")
 	public void deleteById(@RequestBody EmailReceiver emailReceiver) {
-		emailReceiverService.deleteById(emailReceiver.getId());
+		emailReceiverService.deleteById(emailReceiver.getAutincId());
 	}
 
 	@PostMapping("/findEmailByid")
 	public Optional<EmailReceiver> findById(@RequestBody EmailReceiver emailReceiver) {
-		return emailReceiverService.findById(emailReceiver.getId());
+		return emailReceiverService.findById(emailReceiver.getAutincId());
 	}
 
 	@PostMapping("/findEmailByAny")
-	public ResponseEntity<EmailReceiver> findEmailReceiverByParams(@RequestBody EmailReceiver emailReceiver) {
-		Optional<EmailReceiver> result = emailReceiverService.findEmailByAny(emailReceiver);
-		return result.map(ResponseEntity::ok)
-				.orElseGet(() -> ResponseEntity.notFound().build());
+	public List<EmailReceiver> findEmailByAny(@RequestBody EmailReceiver emailReceiver) {
+		return emailReceiverService.selectEmail(emailReceiver);
 	}
 
 }

@@ -2,23 +2,18 @@
 <configuration>
 
     <property name="LOG_FILE" value="logs/springCloud.log"/>
-    <property name="HEARTBEAT_FILE" value="logs/heartbeat.log"/>
+    <property name="HEARTBEAT_FILE" value="logs/heartBeat.log"/>
 
     <property name="LOG_LEVEL" value="DEBUG"/>
 
-    <!-- Console Appender -->
+    <!-- Console Appender for General Logging -->
     <appender name="CONSOLE" class="ch.qos.logback.core.ConsoleAppender">
         <encoder>
             <pattern>[%d{yyyy-MM-dd HH:mm:ss.SSS}] [%thread] [%level] [%logger{36}] - %msg%n</pattern>
         </encoder>
     </appender>
-    <!-- Console Appender -->
-    <appender name="HEARTBEAT" class="ch.qos.logback.core.ConsoleAppender">
-        <encoder>
-            <pattern>[%d{yyyy-MM-dd HH:mm:ss.SSS}] [%thread] [%level] [%logger{36}] - %msg%n</pattern>
-        </encoder>
-    </appender>
-    <!-- File Appender -->
+
+    <!-- Rolling File Appender for General Logging -->
     <appender name="FILE" class="ch.qos.logback.core.rolling.RollingFileAppender">
         <file>${LOG_FILE}</file>
         <rollingPolicy class="ch.qos.logback.core.rolling.TimeBasedRollingPolicy">
@@ -30,11 +25,11 @@
         </encoder>
     </appender>
 
-    <!-- 独立文件输出 -->
-    <appender name="HEARTBEAT" class="ch.qos.logback.core.rolling.RollingFileAppender">
+    <!-- Rolling File Appender for Heartbeat Logging -->
+    <appender name="HEARTBEAT_FILE_APPENDER" class="ch.qos.logback.core.rolling.RollingFileAppender">
         <file>${HEARTBEAT_FILE}</file>
         <rollingPolicy class="ch.qos.logback.core.rolling.TimeBasedRollingPolicy">
-            <fileNamePattern>logs/heartbeat.%d{yyyy-MM-dd}.log</fileNamePattern>
+            <fileNamePattern>heartbeat-%d{yyyy-MM-dd}.log</fileNamePattern>
             <maxHistory>30</maxHistory>
         </rollingPolicy>
         <encoder>
@@ -48,9 +43,10 @@
 
     <logger name="com.donggw" level="${LOG_LEVEL}" additivity="false">
         <appender-ref ref="CONSOLE"/>
+        <appender-ref ref="FILE"/>
     </logger>
-    <!-- 为DiscoveryClient单独设置logger -->
+    <!-- Separate logger for DiscoveryClient with its own appender -->
     <logger name="com.netflix.discovery" level="DEBUG" additivity="false">
-        <appender-ref ref="HEARTBEAT"/>
+        <appender-ref ref="HEARTBEAT_FILE_APPENDER"/>
     </logger>
 </configuration>

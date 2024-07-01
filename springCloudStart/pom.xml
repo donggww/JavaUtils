@@ -87,6 +87,13 @@
             <artifactId>mysql-connector-java</artifactId>
         </dependency>
 
+        <dependency>
+            <groupId>javax.servlet</groupId>
+            <artifactId>javax.servlet-api</artifactId>
+            <version>4.0.1</version>
+            <!-- provided 表示在编译和测试时需要，运行时由容器提供 -->
+            <scope>provided</scope>
+        </dependency>
 
     </dependencies>
 </project>

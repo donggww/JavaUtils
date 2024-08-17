@@ -16,6 +16,7 @@
         <module>dataBaseToDoc</module>
         <module>springCloudStart</module>
         <module>springCloudEureka</module>
+        <module>Mybatis</module>
     </modules>
 
     <dependencyManagement>
@@ -65,6 +66,12 @@
                 <groupId>org.mybatis.spring.boot</groupId>
                 <artifactId>mybatis-spring-boot-starter</artifactId>
                 <version>2.2.2</version>
+            </dependency>
+
+            <dependency>
+                <groupId>lombok</groupId>
+                <artifactId>lombok</artifactId>
+                <version>1.16.18</version>
             </dependency>
 
         </dependencies>
